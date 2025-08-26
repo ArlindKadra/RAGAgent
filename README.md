@@ -32,15 +32,15 @@ Creating a simple agent that performs RAG.
 
 
 
-\- 🔍 \*\*Retrieval-Augmented Generation (RAG)\*\* powered by LangGraph  
+- 🔍 **Retrieval-Augmented Generation (RAG)** powered by LangGraph  
 
-\- 📦 \*\*Dependency management\*\* using uv  
+- 📦 **Dependency management** using uv  
 
-\- ⚡ \*\*Lightweight \& performant\*\* agent execution  
+- ⚡ **Lightweight & performant** agent execution  
 
-\- 🔗 \*\*Composable graph-based workflows\*\*  
+- 🔗 **Composable graph-based workflows**  
 
-\- 🧩 Easy integration with external tools and APIs  
+- 🧩 Easy integration with external tools and APIs  
 
 
 
@@ -54,9 +54,9 @@ Creating a simple agent that performs RAG.
 
 ### Prerequisites
 
-\- Python 3.12+
+- Python 3.12+
 
-\- [uv](https://github.com/astral-sh/uv) installed
+- [uv](https://github.com/astral-sh/uv) installed
 
 
 
