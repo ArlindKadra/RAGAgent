@@ -30,8 +30,11 @@ docs = [
 @tool
 def extract_text(query: str) -> str:
     """Retrieves detailed information about gala guests based on their name or relation."""
-    corpus_embeddings = embedder.encode_document(docs, convert_to_tensor=True)
-    top_k = min(5, len(docs))
+    corpus_embeddings = embedder.encode_document(
+        [doc.page_content for doc in docs],
+        convert_to_tensor=True,
+    )
+    top_k = min(3, len(docs))
     query_embedding = embedder.encode_query(query, convert_to_tensor=True)
 
     similarity_scores = embedder.similarity(query_embedding, corpus_embeddings)[0]
