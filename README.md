@@ -4,11 +4,13 @@ Creating a simple agent that performs RAG.
 
 
 
-<div style="text-align: center;">
-  <img src="./assets/logo.png" alt="Jarvis Logo" width="150"/>
-</div>
-
-
+<table align="center">
+  <tr>
+    <td align="center">
+      <img src="./assets/logo.png" alt="Jarvis Logo" width="150"/>
+    </td>
+  </tr>
+</table>
 
 <h1 align="center">Jarvis 🧠⚡</h1>
 
