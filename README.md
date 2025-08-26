@@ -74,5 +74,6 @@ git clone https://github.com/ArlindKadra/RAGAgent.git
 
 cd RAGAgent
 
-
-
+# Install dependencies
+uv sync
+```
