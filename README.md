@@ -4,11 +4,9 @@ Creating a simple agent that performs RAG.
 
 
 
-<p align="center">
-
-&nbsp; <img src="./assets/logo.png" alt="Jarvis Logo" width="150"/>
-
-</p>
+<div style="text-align: center;">
+  <img src="./assets/logo.png" alt="Jarvis Logo" width="150"/>
+</div>
 
 
 
@@ -28,7 +26,7 @@ Creating a simple agent that performs RAG.
 
 
 
-\## ✨ Features
+## ✨ Features
 
 
 
@@ -48,19 +46,19 @@ Creating a simple agent that performs RAG.
 
 
 
-\## 🚀 Getting Started
+## 🚀 Getting Started
 
 
 
-\### Prerequisites
+### Prerequisites
 
 \- Python 3.12+
 
-\- \[uv](https://github.com/astral-sh/uv) installed
+\- [uv](https://github.com/astral-sh/uv) installed
 
 
 
-\### Installation
+### Installation
 
 
 
