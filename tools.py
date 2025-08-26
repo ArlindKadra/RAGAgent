@@ -25,6 +25,7 @@ docs = [
 
 bm25_retriever = BM25Retriever.from_documents(docs)
 
+@tool
 def extract_text(query: str) -> str:
     """Retrieves detailed information about gala guests based on their name or relation."""
     results = bm25_retriever.invoke(query)
