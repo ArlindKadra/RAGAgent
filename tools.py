@@ -1,13 +1,17 @@
 import datasets
-from langchain_community.retrievers import BM25Retriever
 from langchain_core.documents import Document
 from langchain_core.tools import tool
+from sentence_transformers import SentenceTransformer
+import torch
+
 
 # Load the dataset
 guest_dataset = datasets.load_dataset(
     "agents-course/unit3-invitees",
     split="train",
 )
+
+embedder = SentenceTransformer("all-MiniLM-L6-v2")
 
 # Convert dataset entries into Document objects
 docs = [
@@ -23,13 +27,17 @@ docs = [
     for guest in guest_dataset
 ]
 
-bm25_retriever = BM25Retriever.from_documents(docs)
-
 @tool
 def extract_text(query: str) -> str:
     """Retrieves detailed information about gala guests based on their name or relation."""
-    results = bm25_retriever.invoke(query)
+    corpus_embeddings = embedder.encode_document(docs, convert_to_tensor=True)
+    top_k = min(5, len(docs))
+    query_embedding = embedder.encode_query(query, convert_to_tensor=True)
+
+    similarity_scores = embedder.similarity(query_embedding, corpus_embeddings)[0]
+    scores, indices = torch.topk(similarity_scores, k=top_k)
+    results = [docs[i] for i in indices]
     if results:
-        return "\n\n".join([doc.page_content for doc in results[:3]])
+        return "\n\n".join([doc.page_content for doc in results])
     else:
         return "No matching guest information found."
