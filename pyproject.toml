@@ -6,5 +6,28 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "datasets>=4.0.0",
+    "huggingface-hub[hf-xet]>=0.34.4",
+    "langchain>=0.3.27",
+    "langchain-community>=0.3.27",
     "langchain-core>=0.3.74",
+    "langchain-huggingface>=0.3.1",
+    "langgraph>=0.6.6",
+    "rank-bm25>=0.2.2",
+    "torch>=2.8.0",
+    "torchvision>=0.23.0",
+    "transformers>=4.55.4",
 ]
+
+
+[tool.uv.sources]
+torch = [
+  { index = "pytorch-cu126", marker = "sys_platform != 'darwin'" }
+]
+torchvision = [
+  { index = "pytorch-cu126", marker = "sys_platform != 'darwin'" }
+]
+
+[[tool.uv.index]]
+name = "pytorch-cu126"
+url = "https://download.pytorch.org/whl/cu126"
+explicit = true
