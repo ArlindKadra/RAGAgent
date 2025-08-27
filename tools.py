@@ -1,6 +1,8 @@
 import datasets
 from langchain_core.documents import Document
 from langchain_core.tools import tool
+
+from langchain_core.tools import Tool
 from sentence_transformers import SentenceTransformer
 import torch
 

@@ -1,6 +1,7 @@
 import os
 from typing import TypedDict, Annotated
 
+from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph.message import add_messages
 from langchain_core.messages import AnyMessage, HumanMessage
 from langgraph.prebuilt import ToolNode
@@ -54,10 +55,17 @@ def main():
         tools_condition,
     )
     builder.add_edge("tools", "assistant")
-    jarvis = builder.compile()
+    checkpointer = MemorySaver()
+    jarvis = builder.compile(checkpointer=checkpointer)
 
     messages = [HumanMessage(content="Tell me about our guest named 'Lady Ada Lovelace'.")]
-    response = jarvis.invoke({"messages": messages})
+    response = jarvis.invoke({"messages": messages},  config={"configurable": {"thread_id": "admin1"}})
+
+    print("🎩 Jarvis's Response:")
+    print(response['messages'][-1].content)
+
+    messages = [HumanMessage(content="Could you generate a few topics based on her interests as ice-breakers?.")]
+    response = jarvis.invoke({"messages": messages},  config={"configurable": {"thread_id": "admin1"}})
 
     print("🎩 Jarvis's Response:")
     print(response['messages'][-1].content)
