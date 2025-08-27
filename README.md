@@ -77,3 +77,7 @@ cd RAGAgent
 # Install dependencies
 uv sync
 ```
+
+### Code Quality
+
+The project uses Ruff for formatting and linting.
