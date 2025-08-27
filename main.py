@@ -8,7 +8,7 @@ from langgraph.graph import START, StateGraph
 from langgraph.graph.message import add_messages
 from langgraph.prebuilt import ToolNode, tools_condition
 
-from tools import extract_text
+from tools import extract_text, search_tool
 
 # Windows only since it has a triton error
 os.environ["TORCHINDUCTOR_DISABLED"] = "1"
@@ -20,13 +20,13 @@ def main():
     llm = HuggingFacePipeline.from_model_id(
         model_id="google/gemma-3-270m-it",
         task="text-generation",
-        model_kwargs={
+        pipeline_kwargs={
             "temperature":0.1
         },
     )
 
     chat = ChatHuggingFace(llm=llm, verbose=True)
-    tools = [extract_text]
+    tools = [extract_text, search_tool]
     chat_with_tools = chat.bind_tools(tools)
 
     # Generate the AgentState and Agent graph
@@ -57,13 +57,13 @@ def main():
     checkpointer = MemorySaver()
     jarvis = builder.compile(checkpointer=checkpointer)
 
-    messages = [HumanMessage(content="Tell me about our guest named 'Lady Ada Lovelace'.")]
+    messages = [HumanMessage(content="Tell me about a person named 'Arlind Kadra'.")]
     response = jarvis.invoke({"messages": messages},  config={"configurable": {"thread_id": "admin1"}})
 
     print("🎩 Jarvis's Response:")
     print(response['messages'][-1].content)
 
-    messages = [HumanMessage(content="Could you generate a few topics based on her interests as ice-breakers?.")]
+    messages = [HumanMessage(content="Could you generate a few topics based on his interests as ice-breakers?.")]
     response = jarvis.invoke({"messages": messages},  config={"configurable": {"thread_id": "admin1"}})
 
     print("🎩 Jarvis's Response:")

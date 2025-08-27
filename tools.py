@@ -1,5 +1,6 @@
 import datasets
 import torch
+from langchain_community.tools import DuckDuckGoSearchRun
 from langchain_core.documents import Document
 from langchain_core.tools import tool
 from sentence_transformers import SentenceTransformer
@@ -25,6 +26,9 @@ docs = [
     )
     for guest in guest_dataset
 ]
+
+
+search_tool = DuckDuckGoSearchRun()
 
 @tool
 def extract_text(query: str) -> str:
