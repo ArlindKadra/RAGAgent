@@ -32,12 +32,19 @@ search_tool = DuckDuckGoSearchRun()
 
 @tool
 def extract_text(query: str) -> str:
-    """Retrieves detailed information about gala guests based on their name or relation."""
+    """Retrieves detailed information about gala guests based on their name or relation.
+
+    Args:
+        query: The search query.
+
+    Returns:
+        A string containing detailed information about the guest(s) matching the query.
+    """
     corpus_embeddings = embedder.encode_document(
         [doc.page_content for doc in docs],
         convert_to_tensor=True,
     )
-    top_k = min(3, len(docs))
+    top_k = min(1, len(docs))
     query_embedding = embedder.encode_query(query, convert_to_tensor=True)
 
     similarity_scores = embedder.similarity(query_embedding, corpus_embeddings)[0]
